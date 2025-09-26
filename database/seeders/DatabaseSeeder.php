@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         
         (
             
-        Inspection::factort(3)->has
+        Inspection::factory(3)->has
         
         (
         
