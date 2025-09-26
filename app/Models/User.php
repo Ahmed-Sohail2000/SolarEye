@@ -13,6 +13,18 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    public function site() # relation to the sites owned by the user
+    
+    {
+        return $this->hasMany(Site::class); # each user can have many sites
+    }
+
+    public function inspection() # relation to the inspections done by the user
+    
+    {
+        return $this->hasMany(Inspection::class); # each user can have many inspections
+    }
+
     /**
      * The attributes that are mass assignable.
      *
