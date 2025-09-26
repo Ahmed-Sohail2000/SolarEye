@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('severity', ['low', 'medium', 'high'])->default('low'); # severity of the report
             $table->string('fault_type')->nullable(); # type of fault
             $table->string('photo_url')->nullable(); # url of the photo
-            
+                        
             $table->timestamps();
         });
     }
