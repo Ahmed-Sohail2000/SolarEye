@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
+
+            # create a schema table for the sites with the following fields:
+            $table-foreignId('user_id')->constrained()->onDelete('cascade'); # foreign key to users table
+            $table->string('name'); # name of the site
+            $table->decimal('capacity', 8, 2)->nullable(); # capacity of the site
+            $table->decimal('latitude', 10, 7)->nullable(); # latitude of the site
+            $table->decimal('longitude', 10, 7)->nullable(); # longitude of
             $table->timestamps();
         });
     }

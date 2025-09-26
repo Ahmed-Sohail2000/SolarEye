@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+
+            # create a schema table for the reports with the following fields:
+            $table->foreignId('inspection_id')->constrained()->onDelete('cascade'); #
+            $table->string('title'); # title of the report
+            $table->text('summary'); # summary of the report
+            $table->enum('severity', ['low', 'medium', 'high'])->default('low'); # severity of the report
+            $table->string('fault_type')->nullable(); # type of fault
+            $table->string('photo_url')->nullable(); # url of the photo
+            
             $table->timestamps();
         });
     }
