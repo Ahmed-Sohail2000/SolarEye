@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             # create a schema table for the reports with the following fields:
-            $table->foreignId('inspection_id')->constrained()->onDelete('cascade'); #
+            $table->foreignId('inspection_id'); # foreign key to inspections table
             $table->string('title'); # title of the report
             $table->text('summary'); # summary of the report
             $table->enum('severity', ['low', 'medium', 'high'])->default('low'); # severity of the report

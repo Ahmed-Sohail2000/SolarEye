@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
 
             # create a schema table for the inspections with the following fields:
-            $table->foreignId('site_id')->constrained()->onDelete('cascade'); # foreign key to sites table
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); # foreign key to users table
+            $table->foreignId('site_id'); # foreign key to sites table
+            $table->foreignId('user_id'); # foreign key to users table
             $table->dateTime('inspection_date'); # date of the inspection
             $table->text('notes')->nullabe(); # notes about the inspection
             $table->enum('status', ['pending', 'completed', 'failed'])->default('pending'); # status of the inspection
