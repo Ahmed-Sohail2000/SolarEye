@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); # foreign key to users table
             $table->dateTime('inspection_date'); # date of the inspection
             $table->text('notes')->nullabe(); # notes about the inspection
-            $tasble->enum('status', ['pending', 'completed', 'failed'])->default('pending'); # status of the inspection
+            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending'); # status of the inspection
             $table->timestamps();
         });
     }
