@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Site;
+use App\Models\Inspection;
+use App\Models\Report;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,7 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        # create fake data for sites, inspections, and reports tables
+        Site::factory(5)->has
+        
+        (
+            
+        Inspection::factort(3)->has
+        
+        (
+        
+        Report::factory(2)
+            
+        ))->create();
 
         User::factory()->create([
             'name' => 'Test User',
