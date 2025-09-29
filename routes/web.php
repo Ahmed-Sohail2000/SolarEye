@@ -9,10 +9,16 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-# create a route request for the solar site page
+# create a route request for the solareye site page
 Route::get('/site', function(){
 
     return view('sites.index');
+});
+
+# create a route request for the solareye inspection page
+Route::get('/inspection', function(){
+
+    return view('inspections.index');
 });
 
 Route::view('dashboard', 'dashboard')
