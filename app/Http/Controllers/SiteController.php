@@ -19,10 +19,10 @@ class SiteController extends Controller
         return view('sites.index', compact('sites'));
     }
 
-    public function show($string) # detail page for each site
+    public function show($id) # detail page for each site
     
     {
-        $site = Site::where('name', $string)->findOrFail($string);
+        $site = Site::find($id);
 
         return view('sites.show', compact('site'));
     }
