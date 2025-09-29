@@ -11,7 +11,7 @@
     <h1> Welcome to SolarEye</h1>
     <p>Click the button below to get started</p>
 
-    <a href = "/site" class = "btn">
+    <a href = "/sites" class = "btn">
         New Solar Site!
     </a>
 </body>

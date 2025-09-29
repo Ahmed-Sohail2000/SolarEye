@@ -5,12 +5,14 @@
     <title>Solar Eye | Home |</title>
 </head>
 <body>
-    <h2>Currently available sites<h2>
-    
+    <h1>Currently available sites</h1>
+    <p> List of all sites</p>
+
     <ul>
         <li>site 1</li>
         <li>site 2</li>
-        <li>Site 3</li>
+        <li>site 3</li>
     </ul>
+
 </body>
 </html>

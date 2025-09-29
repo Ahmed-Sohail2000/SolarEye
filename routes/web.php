@@ -1,25 +1,24 @@
 <?php
 
+use App\Http\Controllers\SiteController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+# create a route request for the SITE page
+Route::get('/sites', [SiteController::class, 'index']); # main page for all sites
+Route::get('/sites/{string}', [SiteController::class, 'show']); # detail page for each site with the id parameter of site
 
-# create a route request for the solareye site page
-Route::get('/site', function(){
-
-    return view('sites.index');
-});
-
-# create a route request for the solareye inspection page
+# create a route request for the INSPECTION page
 Route::get('/inspection', function(){
 
     return view('inspections.index');
 });
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
