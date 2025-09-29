@@ -9,6 +9,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+# create a route request for the solar site page
+Route::get('/site', function(){
+
+    return view('sites.index');
+});
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');

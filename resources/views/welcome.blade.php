@@ -11,7 +11,7 @@
     <h1> Welcome to Laravel SolarEye</h1>
     <p>Click the button below to get started</p>
 
-    <a href = "" class = "btn">
+    <a href = "/site" class = "btn">
         New Solar Site!
     </a>
 </body>
