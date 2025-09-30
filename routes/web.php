@@ -1,5 +1,6 @@
 <?php
 
+use App\http\Controllers\InspectionController;
 use App\Http\Controllers\SiteController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -13,10 +14,10 @@ Route::get('/sites', [SiteController::class, 'index']); # main page for all site
 Route::get('/sites/{id}', [SiteController::class, 'show']); # detail page for each site with the id parameter of site
 
 # create a route request for the INSPECTION page
-Route::get('/inspection', function(){
+Route::get('/inspections', [InspectionController::class, 'index']); # main page for all inspections
 
-    return view('inspections.index');
-});
+# create a show route request for the INSPECTION detail page
+Route::get('/inspections/{id}', [InspectionController::class, 'show']); # detail page for each inspection with the id parameter of inspection
 
 Route::get('/', function () {
     return view('welcome');
