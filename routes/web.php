@@ -4,7 +4,7 @@ use App\Http\Controllers\SiteController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route; 
 
 # create a route request for the SITE page
 Route::get('/sites', [SiteController::class, 'index']); # main page for all sites

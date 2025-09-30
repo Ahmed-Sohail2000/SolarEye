@@ -22,7 +22,7 @@ class SiteController extends Controller
     public function show($id) # detail page for each site
     
     {
-        $site = Site::find($id);
+        $site = Site::findOrFail($id); # find the site by id or fail if not found
 
         return view('sites.show', compact('site'));
     }
