@@ -23,11 +23,14 @@
                 
             @else
             
-                <olL> <!--Ordered list to display the sites-->
+                <ol> <!--Ordered list to display the sites-->
                     @foreach($sites as $site) <!-- Loop through each site from the  -->   
                         
                         <li>
-                            <a href="/sites/{{ $site->id }}"> {{ $site->name}}</a> <!-- Link to the site detail page for each site -->
+                            <p> {{ $site->name}} </p> <!--Display the name of the site-->
+                            
+                            <a href="/sites/{{ $site->id }}"> Click for more details</a> <!-- Link to the site detail page for each site -->
+                        
                         </li>
                     
                     @endforeach
