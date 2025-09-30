@@ -9,13 +9,13 @@
     <h1>Currently available sites</h1>
     <p>List of all sites</p>
 
-    <ul>
-        @foreach($sites as $site) <!-- Loop through each site -->
+    <ol>
+        @foreach($sites as $site) <!-- Loop through each site from the  -->
             <li>
                 <a href="/sites/{{ $site->id }}"> {{ $site->name}}</a> <!-- Link to the show page for each site -->
             </li>
         @endforeach
-    </ul>
+    </ol>
 
 </body>
 </html>

@@ -16,15 +16,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         # create fake data for sites, inspections, and reports tables
-        Site::factory(5)->has
+        Site::factory(5)->has # each user has 5 sites
         
         (
             
-        Inspection::factory(3)->has
+        Inspection::factory(3)->has # each site has 3 inspections
         
         (
         
-        Report::factory(2)
+        Report::factory(2) # each inspection has 2 reports
             
         ))->create();
 

@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sites', function (Blueprint $table) {
-            $table->id();
-
+        Schema::create('sites', function (Blueprint $table) 
+        
+        { 
             # create a schema table for the sites with the following fields:
+            $table->id();
             $table->foreignId('user_id'); # foreign key to users table
             $table->string('name'); # name of the site
             $table->decimal('capacity', 8, 2)->nullable(); # capacity of the site
