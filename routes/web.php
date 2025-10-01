@@ -1,6 +1,7 @@
 <?php
 
-use App\http\Controllers\InspectionController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\SiteController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -18,6 +19,12 @@ Route::get('/inspections', [InspectionController::class, 'index']); # main page 
 
 # create a show route request for the INSPECTION detail page
 Route::get('/inspections/{id}', [InspectionController::class, 'show']); # detail page for each inspection with the id parameter of inspection
+
+# Create a report route request for the REPORT page
+Route::get('/reports', [ReportController::class, 'index']); # main index page for all the reports of the solar inspected sites
+
+# Create a show route request for the report index detail page
+Route::get('/reports/{id}', [ReportController::class, 'show']); # detail page for each report with the id parameter of report
 
 Route::get('/', function () {
     return view('welcome');
