@@ -8,6 +8,10 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route; 
 
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
 # create a route request for the SITE page
 Route::get('/sites', [SiteController::class, 'index']); # main page for all sites
 
@@ -25,10 +29,6 @@ Route::get('/reports', [ReportController::class, 'index']); # main index page fo
 
 # Create a show route request for the report index detail page
 Route::get('/reports/{id}', [ReportController::class, 'show']); # detail page for each report with the id parameter of report
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
