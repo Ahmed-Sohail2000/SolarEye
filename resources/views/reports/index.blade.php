@@ -1,11 +1,4 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Reports for Solar Inspected Sites </title>
-</head>
-<body>
-    
+<x-page-layout> <!-- Using the page layout component to wrap the content of this page -->
     <ol>
 
         @foreach($reports as $report) <!--Loop through each report from the report migration table-->
@@ -21,6 +14,4 @@
         @endforeach
     
     </ol>
-
-</body>
-</html>
+</x-page-layout>

@@ -1,4 +1,4 @@
-    <x-page-layout> <!-- Using the page layout component to wrap the content of this page -->
+<x-page-layout> <!-- Using the page layout component to wrap the content of this page -->
     
     <div> 
         
@@ -14,4 +14,4 @@
     
     <p><a href = "/sites"> Back to all sites </a></p> 
 
-    </x-page-layout>
+</x-page-layout>
