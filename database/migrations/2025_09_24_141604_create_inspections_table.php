@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('site_id'); # foreign key to sites table
             $table->foreignId('user_id'); # foreign key to users table
             $table->dateTime('inspection_date'); # date of the inspection
-            $table->text('notes')->nullabe(); # notes about the inspection
+            $table->string('notes'); # notes about the inspection
             $table->enum('status', ['pending', 'completed', 'failed'])->default('pending'); # status of the inspection
             $table->timestamps();
         });
