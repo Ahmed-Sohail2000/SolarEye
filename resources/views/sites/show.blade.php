@@ -1,5 +1,6 @@
 <x-page-layout> <!-- Using the page layout component to wrap the content of this page -->
-    
+
+    @section('content') <!-- Defining the content section to be injected into the layout -->
     <div> 
         
         <h2> {{$site->name}}</h2> <!--Display the name of the site -->
@@ -14,4 +15,5 @@
     
     <p><a href = "/sites"> Back to all sites </a></p> 
 
+    @endsection
 </x-page-layout>

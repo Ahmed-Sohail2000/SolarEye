@@ -1,4 +1,6 @@
-<x-page-layout> <!-- Using the page layout component to wrap the content of this page -->
+<x-page-layout> <!-- Using the page layout component for consistent page layout -->
+
+@section('content') <!-- Defining the content section to be injected into the layout from the welcome page content section -->
 
 <h1>Currently available sites</h1>
     
@@ -29,5 +31,6 @@
             </ol>
             
         @endif
+    @endsection
 
 </x-page-layout>
