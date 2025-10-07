@@ -1,7 +1,7 @@
 <x-page-layout>
 @section('content')
 
-<form action = "{{route("sites.store")}}" method = "POST">
+<form action = "/sites" method = "POST">
 
     @csrf <!-- CSRF token for security -->
 
