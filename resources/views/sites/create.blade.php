@@ -1,7 +1,7 @@
 <x-page-layout>
 @section('content')
 
-<form action = "" method = "">
+<form action = "{{route("sites.store")}}" method = "POST">
 
     @csrf <!-- CSRF token for security -->
 
@@ -24,9 +24,9 @@
 
             <!-- Site Capacity -->
             <div>
-                <label for="capacity" class="block text-sm font-semibold text-gray-700 mb-2">Capacity (kW)</label>
+                <label for="capacity" class="block text-sm font-semibold text-gray-700 mb-2">Capacity (MW)</label>
                 <input 
-                    type = "number" 
+                    type = "integer" 
                     id = "capacity" 
                     name = "capacity" 
                     required
@@ -85,10 +85,9 @@
                     Create Site
                 </button>
             </div>
-        </form>
+        </div>
     </div>
-</div>
-
 </form>
+
 @endsection
 </x-page-layout>

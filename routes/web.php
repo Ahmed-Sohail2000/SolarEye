@@ -12,8 +12,13 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-# create a route request for the create new site page
+## SITE CRUD ROUTES
+
+# create a route request for the create new site page, store, remove, update, and edit 
 Route::get('/sites/create', [SiteController::class, 'create']); # create a new site page form)
+
+# resource route for the SITE controller to handle all CRUD operations
+Route::resource("sites", SiteController::class);
 
 # create a route request for the SITE page
 Route::get('/sites', [SiteController::class, 'index']); # main page for all sites
@@ -21,8 +26,7 @@ Route::get('/sites', [SiteController::class, 'index']); # main page for all site
 # create a show route request for the SITE detail page
 Route::get('/sites/{id}', [SiteController::class, 'show']); # detail page for each site with the id parameter of site
 
-// # create a route request for the create new site page
-// Route::get('/sites/create', [SiteController::class, 'create']); # create a new site page form)
+## INSPECTION CRUD ROUTES
 
 # create a route request for the INSPECTION page
 Route::get('/inspections', [InspectionController::class, 'index']); # main page for all inspections

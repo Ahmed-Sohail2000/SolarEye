@@ -35,4 +35,23 @@ class SiteController extends Controller
         return view('sites.create', ["sites" => $sites]); # return the view with the site data
     }
 
+    public function store(Request $request) # store the new site data
+
+    {
+      # validate the request data
+      $validated = $request -> validate([
+
+        "name" => "required|string|max:255",
+        "capacity" => "required|integer|min: 0|max: 1000",
+        "latitude" => "required|string|max: 255",
+        "longitude" => "required|string|max: 255",
+        "site_id" => "required|exists:site,id",
+      ]); 
+        
+      # create a new site instance
+      Site::create($validated);
+
+      return redirect("/sites") -> route("sites.index"); # redirect to the sites index page
+    }
+
 }
