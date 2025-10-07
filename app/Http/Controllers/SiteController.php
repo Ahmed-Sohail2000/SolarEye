@@ -45,7 +45,8 @@ class SiteController extends Controller
             'capacity' => $request->capacity,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
-            'user_id' => auth()->id() # set the user_id to the currently authenticated user
+            'user_id' => auth()->id(), # set the user_id to the currently authenticated user
+            'site_id' => uniqid(), # generate a unique id for the site
         ]);
         
         return redirect() -> route('sites.show', $site->id); # redirect to the sites index page
