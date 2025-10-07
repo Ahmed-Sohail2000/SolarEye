@@ -30,9 +30,9 @@ class SiteController extends Controller
     public function create() # creaet a new site page form
     
     {
-        $site = Site::all();
+        $sites = Site::all();
 
-        return view('sites.create', compact('site')); # return the view with the site data
+        return view('sites.create', ["sites" => $sites]); # return the view with the site data
     }
 
 }
