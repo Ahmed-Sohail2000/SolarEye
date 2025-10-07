@@ -59,5 +59,21 @@ class SiteController extends Controller
         return view('sites.edit', compact('site')); # return the view with the site data
 
     }
-    
+
+    public function update(Request $request, $id) # update the site data
+
+    {
+        $site = Site::findOrFail($id); # find the site by id or fail if not found
+
+        $site->update([ # update the site data with the request data
+
+            'name' => $request->name,
+            'capacity' => $request->capacity,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'user_id' => auth()->id() # set the user_id to the currently authenticated user
+        ]);
+
+        return redirect() -> route('sites.show', $site->id); # redirect to the site detail page
+    }
 }

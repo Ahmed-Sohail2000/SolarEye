@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
     # create an edit route request for the SITE edit page
     Route::get('/sites/{id}/edit', [SiteController::class, 'edit']) -> name('sites.edit'); # edit the site data
 
+    # put route to update the site data in the database
+    Route::put('/sites/{id}', [SiteController::class, "update"])->name('sites.update'); # update the site data
 });
 
 require __DIR__.'/auth.php';

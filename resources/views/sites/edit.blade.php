@@ -1,14 +1,17 @@
 <x-page-layout>
 
 @section('content')
+
 <div class="container mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg w-1/2">
 
     <h2 class="text-2xl font-bold mb-6 text-center">Edit Site</h2>
 
-    <form action="/sites" method="put">
-        @csrf
-        @method('PUT')
+    <form action="/sites/{{$site->id}}" method="POST"> <!-- Update the action URL to point to the correct update route -->
 
+        @csrf
+
+        @method('PUT')
+        
         <div class="mb-4">
             <label class="block text-gray-700">Site Name</label>
             <input type="text" name="name" value="{{ old('name', $site->name) }}"
