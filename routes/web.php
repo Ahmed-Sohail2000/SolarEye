@@ -30,11 +30,11 @@ Route::middleware(['auth'])->group(function () {
     # post route to store the new site data in the database
     Route::post("/sites", [SiteController::class, 'store']) -> name('sites.store'); # store the new site data
     
-    # create a show route request for the SITE detail page
-    Route::get('/sites/{id}', [SiteController::class, 'show']) -> name('sites.show'); # detail page for each site with the id parameter of site
-
     # create an edit route request for the SITE edit page
     Route::get('/sites/{id}/edit', [SiteController::class, 'edit']) -> name('sites.edit'); # edit the site data
+
+    # create a show route request for the SITE detail page
+    Route::get('/sites/{id}', [SiteController::class, 'show']) -> name('sites.show'); # detail page for each site with the id parameter of site
 });
 
 require __DIR__.'/auth.php';

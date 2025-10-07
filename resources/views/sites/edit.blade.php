@@ -1,128 +1,44 @@
-{{-- <x-page-layout>
-@section('content')
-
-<form action = "/sites" method = "POST">
-
-    @csrf <!-- CSRF token for security -->
-
-<div class="flex justify-center py-16 bg-gray-50 min-h-screen">
-    <div class="bg-white shadow-lg rounded-2xl p-10 w-full max-w-2xl border border-gray-200">
-        
-        <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Create a New Site</h1>
-
-            <!-- Site Name -->
-            <div>
-                <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Site Name</label>
-                <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
-                    required
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900"
-                >
-            </div>
-
-            <!-- Site Capacity -->
-            <div>
-                <label for="capacity" class="block text-sm font-semibold text-gray-700 mb-2">Capacity (MW)</label>
-                <input 
-                    type = "integer" 
-                    id = "capacity" 
-                    name = "capacity" 
-                    required
-                    step = "0.01"
-                    class = "w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                >
-            </div>
-
-            <!-- Site Latitude -->
-            <div>
-                <label for="latitude" class="block text-sm font-semibold text-gray-700 mb-2">Latitude</label>
-                <input 
-                    type="text" 
-                    id="latitude" 
-                    name="latitude" 
-                    step="0.000001"
-                    required
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900"
-                >
-            </div>
-
-            <!-- Site Longitude -->
-            <div>
-                <label for="longitude" class="block text-sm font-semibold text-gray-700 mb-2">Longitude</label>
-                <input 
-                    type="text" 
-                    id="longitude" 
-                    name="longitude" 
-                    step="0.000001"
-                    required
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900"
-                >
-            </div>
-
-            <!-- Related Site Dropdown -->
-            <div>
-                <label for="site_id" class="block text-sm font-semibold text-gray-700 mb-2">Parent Site</label>
-                <select 
-                    id="site_id" 
-                    name="site_id" 
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900"
-                >
-                    <option value="" disabled selected>Select a site</option>
-                    @foreach($sites as $site)
-                        <option value="{{ $site->id }}">{{ $site->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="text-center">
-                <button 
-                    type="submit" 
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-transform transform hover:-translate-y-1"
-                >
-                    Create Site
-                </button>
-            </div>
-        </div>
-    </div>
-</form>
-
-@endsection
-</x-page-layout> --}}
-
-
 <x-page-layout>
+
 @section('content')
-<div class="container">
-    <h2>Edit Site</h2>
+<div class="container mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg w-1/2">
 
-    <form action='/sites/ {{$site->id}}' method="put">
+    <h2 class="text-2xl font-bold mb-6 text-center">Edit Site</h2>
+
+    <a href = "/sites/ {{$site->id}}/edit" class = "text-blue-500 hover:underline mb-4 inline-block">Edit Site</a>
+
+    <form action="/sites" method="put">
         @csrf
+        @method('PUT')
 
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" name="name" value="{{ old('name', $site->name) }}" class="form-control" required>
+        <div class="mb-4">
+            <label class="block text-gray-700">Site Name</label>
+            <input type="text" name="name" value="{{ old('name', $site->name) }}"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <div class="form-group">
-            <label>Capacity</label>
-            <input type="text" name="capacity" value="{{ old('capacity', $site->capacity) }}" class="form-control" required>
+        <div class="mb-4">
+            <label class="block text-gray-700">Capacity</label>
+            <input type="text" name="capacity" value="{{ old('capacity', $site->capacity) }}"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <div class="form-group">
-            <label>Latitude</label>
-            <input type="text" name="latitude" value="{{ old('latitude', $site->latitude) }}" class="form-control" required>
+        <div class="mb-4">
+            <label class="block text-gray-700">Latitude</label>
+            <input type="text" name="latitude" value="{{ old('latitude', $site->latitude) }}"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <div class="form-group">
-            <label>Longitude</label>
-            <input type="text" name="longitude" value="{{ old('longitude', $site->longitude) }}" class="form-control" required>
+        <div class="mb-4">
+            <label class="block text-gray-700">Longitude</label>
+            <input type="text" name="longitude" value="{{ old('longitude', $site->longitude) }}"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <button type="submit" class="btn btn-success">Save Changes</button>
-        <a href="/sites.index" class="btn btn-secondary">Cancel</a>
+        <button type="submit"
+            class="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600">
+            Update Site
+        </button>
     </form>
 </div>
 @endsection
