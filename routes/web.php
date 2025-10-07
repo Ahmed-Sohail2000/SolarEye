@@ -18,7 +18,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
-    
 });
 
 require __DIR__.'/auth.php';
@@ -26,16 +25,16 @@ require __DIR__.'/auth.php';
 ## SITE CRUD ROUTES
 
 # create a route request for the SITE page
-Route::get('/sites', [SiteController::class, 'index']); # main page for all sites
+Route::get('/sites', [SiteController::class, 'index']) -> name('sites.index'); # main page for all sites
 
 # create a route request for the create new site page, store, remove, update, and edit 
-Route::get('/sites/create', [SiteController::class, 'create']); # create a new site page form)
+Route::get('/sites/create', [SiteController::class, 'create']) -> name('sites.create'); # create a new site page form)
 
 # post route to store the new site data in the database
-Route::post("/sites", [SiteController::class, 'store']);
-
+Route::post("/sites", [SiteController::class, 'store']) -> name('sites.store'); # store the new site data
+    
 # create a show route request for the SITE detail page
-Route::get('/sites/{id}', [SiteController::class, 'show']); # detail page for each site with the id parameter of site
+Route::get('/sites/{id}', [SiteController::class, 'show']) -> name('sites.show'); # detail page for each site with the id parameter of site
 
 
 ## INSPECTION CRUD ROUTES
