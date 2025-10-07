@@ -45,11 +45,19 @@ class SiteController extends Controller
             'capacity' => $request->capacity,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
-            'user_id' => auth()->id(), # set the user_id to the currently authenticated user
-            'site_id' => uniqid(), # generate a unique id for the site
+            'user_id' => auth()->id() # set the user_id to the currently authenticated user
         ]);
         
         return redirect() -> route('sites.show', $site->id); # redirect to the sites index page
     }
 
+    public function edit($id) # edit the site data
+
+    {   
+        $site = Site::find($id); # find the site by id
+
+        return view('sites.edit', compact('site')); # return the view with the site data
+
+    }
+    
 }

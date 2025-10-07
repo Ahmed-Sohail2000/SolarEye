@@ -33,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
     # create a show route request for the SITE detail page
     Route::get('/sites/{id}', [SiteController::class, 'show']) -> name('sites.show'); # detail page for each site with the id parameter of site
 
+    # create an edit route request for the SITE edit page
+    Route::get('/sites/{id}/edit', [SiteController::class, 'edit']) -> name('sites.edit'); # edit the site data
 });
 
 require __DIR__.'/auth.php';
