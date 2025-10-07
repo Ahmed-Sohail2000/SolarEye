@@ -26,4 +26,13 @@ class SiteController extends Controller
 
         return view('sites.show', compact('site'));
     }
+
+    public function create() # creaet a new site page form
+    
+    {
+        $site = Site::all();
+
+        return view('sites.create', compact('site')); # return the view with the site data
+    }
+
 }
