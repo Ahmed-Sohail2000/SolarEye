@@ -22,8 +22,9 @@
                         
                         <p> {{ $site->name}} </p> <!--Display the name of the site-->
                             
-                        <a href="/sites/{{ $site->id }}"> Click for more details</a> <!-- Link to the site detail page for each site -->
-                        
+                        <a href="/sites/{{ $site->id }}" class = "text-blue-500 hover:underline mb-4-inline-block"> Click for more details</a> <!-- Link to the site detail page for each site -->
+
+                        <a href = "/sites/{{$site->id}}/edit" class = "text-blue-500 hover:underline mb-4 inline-block"> Edit Site</a> <!-- Link to the edit page for each site -->
                     </li>
                     
                 @endforeach

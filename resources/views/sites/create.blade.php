@@ -85,6 +85,19 @@
                     Create Site
                 </button>
             </div>
+
+            <!-- validation error-->
+            @if ($errors->any()) <!--
+
+            <ul class = "px-4 py-2 mt-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                
+                @foreach ($errors->all() as $error) #!-- Loop through each error message -->
+                    
+                    <li class = "my-2 text-red-500"> {{ $error }} </li> <!-- Display the error message -->
+                
+                @endforeach
+            </ul>
+            @endif
         </div>
     </div>
 </form>

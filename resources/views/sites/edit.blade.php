@@ -5,8 +5,6 @@
 
     <h2 class="text-2xl font-bold mb-6 text-center">Edit Site</h2>
 
-    <a href = "/sites/ {{$site->id}}/edit" class = "text-blue-500 hover:underline mb-4 inline-block">Edit Site</a>
-
     <form action="/sites" method="put">
         @csrf
         @method('PUT')
