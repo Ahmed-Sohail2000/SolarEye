@@ -61,21 +61,6 @@
                 >
             </div>
 
-            <!-- Related Site Dropdown -->
-            <div>
-                <label for="site_id" class="block text-sm font-semibold text-gray-700 mb-2">Parent Site</label>
-                <select 
-                    id="site_id" 
-                    name="site_id" 
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900"
-                >
-                    <option value="" disabled selected>Select a site</option>
-                    @foreach($sites as $site)
-                        <option value="{{ $site->id }}">{{ $site->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
             <!-- Submit Button -->
             <div class="text-center">
                 <button 

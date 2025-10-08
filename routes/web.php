@@ -38,6 +38,9 @@ Route::middleware(['auth'])->group(function () {
 
     # put route to update the site data in the database
     Route::put('/sites/{id}', [SiteController::class, "update"])->name('sites.update'); # update the site data
+
+    # put route to delte the site data in the database
+    Route::delete('/sites/{id}', [SiteController::class, 'destroy'])->name('sites.destroy'); # delete the site data
 });
 
 require __DIR__.'/auth.php';

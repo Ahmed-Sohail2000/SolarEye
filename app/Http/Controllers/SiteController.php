@@ -76,4 +76,14 @@ class SiteController extends Controller
 
         return redirect() -> route('sites.show', $site->id); # redirect to the site detail page
     }
+
+    public function destroy($id) # delete the site id data from the list of the sites
+    
+    {
+        $site = Site::find($id); # find the site by id 
+
+        $site -> delete(); # set the site instance to delete
+
+        return redirect()->route('sites.index', $site->id);
+    }
 }
