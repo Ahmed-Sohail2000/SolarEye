@@ -1,14 +1,29 @@
 <x-page-layout>
 @section('content')
 
-<form action = "/sites" method = "POST">
-
-    @csrf <!-- CSRF token for security -->
-
 <div class="flex justify-center py-16 bg-gray-50 min-h-screen">
     <div class="bg-white shadow-lg rounded-2xl p-10 w-full max-w-2xl border border-gray-200">
         
         <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Create a New Site</h1>
+        
+        <!-- Validation Error Message-->
+
+        @if ($errors->any())
+
+            <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+
+                        <li> {{$error}} </li>
+                
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
+        <form action = "/sites" method = "POST">
+
+        @csrf <!-- CSRF token for security -->
 
             <!-- Site Name -->
             <div>
@@ -70,19 +85,6 @@
                     Create Site
                 </button>
             </div>
-
-            <!-- validation error-->
-            @if ($errors->any()) <!--
-
-            <ul class = "px-4 py-2 mt-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                
-                @foreach ($errors->all() as $error) #!-- Loop through each error message -->
-                    
-                    <li class = "my-2 text-red-500"> {{ $error }} </li> <!-- Display the error message -->
-                
-                @endforeach
-            </ul>
-            @endif
         </div>
     </div>
 </form>

@@ -6,6 +6,21 @@
 
     <h2 class="text-2xl font-bold mb-6 text-center">Edit Site</h2>
 
+    <!-- Validation Error Message -->
+
+    @if ($errors->any())
+
+        <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+            <ul>
+                @foreach ($errors->all() as $error)
+
+                    <li> {{$error}} </li>
+                
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="/sites/{{$site->id}}" method="POST"> <!-- Update the action URL to point to the correct update route -->
 
         @csrf
