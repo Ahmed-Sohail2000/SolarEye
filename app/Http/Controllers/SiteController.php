@@ -35,20 +35,26 @@ class SiteController extends Controller
         return view('sites.create', ["sites" => $sites]); # return the view with the site data
     }
 
-    public function store(Request $request) # store the new site data
+    public function store(Request $request) # store the new site data (POST METHOD)
 
     {
-        # create a new site instance and validate the request data
-        $site = Site::create([
+        // 1. validate the input form
+        $validated = $request->validate([
 
-            'name' => $request->name,
-            'capacity' => $request->capacity,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'user_id' => auth()->id() # set the user_id to the currently authenticated user
-        ]);
+            'name' => 'required|string|max:255',
+            'capacity' => 'required|numeric|min:0',
+            'latitude' => 'required|string|max:255',
+            'longitude' => 'required|string|max:255'
+        ]); 
+
+        // user auth 
+        $validated['user_id'] = auth()->id(); # set the user_id to the currently authenticated user
+
+        // 2. Create the site with validated data
+        $site = Site::create($validated);
         
-        return redirect() -> route('sites.show', $site->id); # redirect to the sites index page
+        // Redirect back to the show page with the success message
+        return redirect() -> route('sites.show', $site->id)->with('success', '✅ Site Created Successfully!'); # redirect to the sites index page
     }
 
     public function edit($id) # edit the site data
@@ -74,7 +80,7 @@ class SiteController extends Controller
             'user_id' => auth()->id() # set the user_id to the currently authenticated user
         ]);
 
-        return redirect() -> route('sites.show', $site->id); # redirect to the site detail page
+        return redirect()->route('sites.show', $site->id); # redirect to the site detail page
     }
 
     public function destroy($id) # delete the site id data from the list of the sites

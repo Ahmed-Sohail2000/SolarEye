@@ -16,7 +16,7 @@ class Site extends Model
         'latitude',
         'longitude',
         'site_id',
-        'user_id', # foreign key to link to the user who owns the site
+        'user_id' # foreign key to link to the user who owns the site
     ];
     
     public function user() # relation to the user who owns the site
