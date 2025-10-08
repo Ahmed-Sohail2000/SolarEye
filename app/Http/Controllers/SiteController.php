@@ -71,16 +71,22 @@ class SiteController extends Controller
     {
         $site = Site::findOrFail($id); # find the site by id or fail if not found
 
-        $site->update([ # update the site data with the request data
+        $validated = $request->validate([ # update the site data with the request data
 
-            'name' => $request->name,
-            'capacity' => $request->capacity,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'user_id' => auth()->id() # set the user_id to the currently authenticated user
+            'name' => 'required|string|max:255',
+            'capacity' => 'required|numeric|min:0',
+            'latitude' => 'required|string|max:255',
+            'longitude' => 'required|string|max:255'
+
         ]);
 
-        return redirect()->route('sites.show', $site->id); # redirect to the site detail page
+        // add the user auth
+        $validated['user_id'] = auth()->id(); // assign the current user
+
+        // update the site
+        $site->update($validated);
+
+        return redirect()->route('sites.show', $site->id)->with('success', '✅ Site Updated Successfully!'); # redirect to the site detail page
     }
 
     public function destroy($id) # delete the site id data from the list of the sites
