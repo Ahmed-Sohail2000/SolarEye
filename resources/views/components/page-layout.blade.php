@@ -19,9 +19,23 @@
             </div>
 
             <div class="space-x-4">
-                <a href="/login" class="hover:text-gray-200">Login</a>
-                <a href="/Register" class="hover:text-gray-200">Register</a>
-            </div>
+            
+                @guest
+                    
+                    <a href="{{ route('login') }}" class="hover:text-gray-200">Login</a>
+                    <a href="{{ route('register') }}" class="hover:text-gray-200">Register</a>
+                
+                @else
+                    
+                    <span>Welcome, {{ Auth::user()->name }}</span>
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                @csrf
+                    
+                    <button type="submit" class="hover:text-gray-200">Logout</button>
+                    </form>
+                @endguest
+</div>
+
         </nav>
     </header>
 

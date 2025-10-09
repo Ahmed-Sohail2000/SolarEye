@@ -12,6 +12,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
@@ -59,7 +63,4 @@ Route::get('/reports', [ReportController::class, 'index']); # main index page fo
 # Create a show route request for the report index detail page
 Route::get('/reports/{id}', [ReportController::class, 'show']); # detail page for each report with the id parameter of report
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
 
