@@ -38,7 +38,7 @@ class Register extends Component
 
         Auth::login($user);
 
-        // $this->redirect(route('welcome', absolute: false), navigate: true);
-        $this->redirect(url()->current() . '?tab=login');
+        $this->redirect(route('welcome', absolute: false), navigate: true);
+
     }
 }
