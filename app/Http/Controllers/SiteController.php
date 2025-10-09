@@ -77,11 +77,10 @@ class SiteController extends Controller
             'capacity' => 'required|numeric|min:0',
             'latitude' => 'required|string|max:255',
             'longitude' => 'required|string|max:255',
-            'user_id' => auth()->id(),
         ]);
 
         // add the user auth
-        // $validated['user_id'] = auth()->id(); // assign the current user
+        $validated['user_id'] = auth()->id(); // assign the current user
 
         // update the site
         $site->update($validated);
