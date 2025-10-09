@@ -1,0 +1,9 @@
+:root {
+    --color-bg: #fdfeff;           /* white */
+    --color-card: #1C2541;         /* Slightly lighter navy */
+    --color-accent: #2750d7;       /* Aqua highlight */
+    --color-text: #FFFFFF;         /* White text */
+    --color-muted: #A0AEC0;        /* Muted gray for subtext */
+    --color-button: #2750d7;       /* Aqua button */
+    --color-button-hover: #1C2541; /* Hover color */
+}

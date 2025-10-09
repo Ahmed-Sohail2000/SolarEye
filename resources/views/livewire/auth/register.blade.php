@@ -1,62 +1,47 @@
-<div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
-
-    <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
-
-    <form method="POST" wire:submit="register" class="flex flex-col gap-6">
-        <!-- Name -->
-        <flux:input
-            wire:model="name"
-            :label="__('Name')"
-            type="text"
-            required
-            autofocus
-            autocomplete="name"
-            :placeholder="__('Full name')"
-        />
-
-        <!-- Email Address -->
-        <flux:input
-            wire:model="email"
-            :label="__('Email address')"
-            type="email"
-            required
-            autocomplete="email"
-            placeholder="email@example.com"
-        />
-
-        <!-- Password -->
-        <flux:input
-            wire:model="password"
-            :label="__('Password')"
-            type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('Password')"
-            viewable
-        />
-
-        <!-- Confirm Password -->
-        <flux:input
-            wire:model="password_confirmation"
-            :label="__('Confirm password')"
-            type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('Confirm password')"
-            viewable
-        />
-
-        <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
-                {{ __('Create account') }}
-            </flux:button>
-        </div>
-    </form>
-
-    <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
-        <span>{{ __('Already have an account?') }}</span>
-        <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
+<div>
+    <div class="text-center mb-8">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrYrMttUn1aIuH4h0PZ-7DDmbm_V9mSi30HQ&s" alt="SolarEye Logo" class="mx-auto w-20 h-20 mb-4">
+        <h2 class="text-2xl font-bold text-[var(--color-accent)]">Create your SolarEye Account</h2>
+        <p class="text-[var(--color-muted)]">Join us to monitor and analyze solar faults intelligently</p>
     </div>
+
+    <form wire:submit="register" class="space-y-4">
+        <div>
+            <label for="name" class="block text-sm font-medium text-[var(--color-muted)]">Full name</label>
+            <input wire:model="form.name" id="name" type="text"
+                class="w-full mt-1 rounded-lg bg-[var(--color-bg)] border border-gray-600 text-[var(--color-text)] p-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
+            @error('form.name') <p class="text-red-400 text-sm">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
+            <label for="email" class="block text-sm font-medium text-[var(--color-muted)]">Email address</label>
+            <input wire:model="form.email" id="email" type="email"
+                class="w-full mt-1 rounded-lg bg-[var(--color-bg)] border border-gray-600 text-[var(--color-text)] p-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
+            @error('form.email') <p class="text-red-400 text-sm">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
+            <label for="password" class="block text-sm font-medium text-[var(--color-muted)]">Password</label>
+            <input wire:model="form.password" id="password" type="password"
+                class="w-full mt-1 rounded-lg bg-[var(--color-bg)] border border-gray-600 text-[var(--color-text)] p-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
+            @error('form.password') <p class="text-red-400 text-sm">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
+            <label for="password_confirmation" class="block text-sm font-medium text-[var(--color-muted)]">Confirm password</label>
+            <input wire:model="form.password_confirmation" id="password_confirmation" type="password"
+                class="w-full mt-1 rounded-lg bg-[var(--color-bg)] border border-gray-600 text-[var(--color-text)] p-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
+            @error('form.password_confirmation') <p class="text-red-400 text-sm">{{ $message }}</p> @enderror
+        </div>
+
+        <button type="submit"
+            class="w-full py-2 rounded-lg bg-[var(--color-button)] hover:bg-[var(--color-button-hover)] text-white font-semibold">
+            Create account
+        </button>
+
+        <p class="text-center text-sm text-[var(--color-muted)] mt-4">
+            Already have an account?
+            <a href="{{ route('login') }}" class="text-[var(--color-accent)] hover:underline">Log in</a>
+        </p>
+    </form>
 </div>

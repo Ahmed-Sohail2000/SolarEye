@@ -1,52 +1,44 @@
-<div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" />
+<div>
+    <div class="text-center mb-8">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrYrMttUn1aIuH4h0PZ-7DDmbm_V9mSi30HQ&s" alt="SolarEye Logo" class="mx-auto w-20 h-20 mb-4">
+        <h2 class="text-2xl font-bold text-[var(--color-accent)]">Welcome to SolarEye</h2>
+        <p class="text-[var(--color-muted)]">AI-powered Solar Fault Monitoring</p>
+    </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
-
-    <form method="POST" wire:submit="login" class="flex flex-col gap-6">
-        <!-- Email Address -->
-        <flux:input
-            wire:model="email"
-            :label="__('Email address')"
-            type="email"
-            required
-            autofocus
-            autocomplete="email"
-            placeholder="email@example.com"
-        />
-
-        <!-- Password -->
-        <div class="relative">
-            <flux:input
-                wire:model="password"
-                :label="__('Password')"
-                type="password"
-                required
-                autocomplete="current-password"
-                :placeholder="__('Password')"
-                viewable
-            />
-
-            @if (Route::has('password.request'))
-                <flux:link class="absolute end-0 top-0 text-sm" :href="route('password.request')" wire:navigate>
-                    {{ __('Forgot your password?') }}
-                </flux:link>
-            @endif
+    <form wire:submit="login" class="space-y-4">
+        <div>
+            <label for="email" class="block text-sm font-medium text-[var(--color-muted)]">Email address</label>
+            <input wire:model="form.email" id="email" type="email"
+                class="w-full mt-1 rounded-lg bg-[var(--color-bg)] border border-gray-600 text-[var(--color-text)] p-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
+            @error('form.email') <p class="text-red-400 text-sm">{{ $message }}</p> @enderror
         </div>
 
-        <!-- Remember Me -->
-        <flux:checkbox wire:model="remember" :label="__('Remember me')" />
-
-        <div class="flex items-center justify-end">
-            <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>
+        <div>
+            <label for="password" class="block text-sm font-medium text-[var(--color-muted)]">Password</label>
+            <input wire:model="form.password" id="password" type="password"
+                class="w-full mt-1 rounded-lg bg-[var(--color-bg)] border border-gray-600 text-[var(--color-text)] p-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
+            @error('form.password') <p class="text-red-400 text-sm">{{ $message }}</p> @enderror
         </div>
+
+        <div class="flex items-center justify-between">
+            <label class="flex items-center text-sm text-[var(--color-muted)]">
+                <input wire:model="form.remember" type="checkbox" class="mr-2 rounded bg-[var(--color-bg)] border-gray-600" />
+                Remember me
+            </label>
+
+            <a href="{{ route('password.request') }}" class="text-sm text-[var(--color-accent)] hover:underline">
+                Forgot password?
+            </a>
+        </div>
+
+        <button type="submit"
+            class="w-full py-2 rounded-lg bg-[var(--color-button)] hover:bg-[var(--color-button-hover)] text-white font-semibold">
+            Log in
+        </button>
+
+        <p class="text-center text-sm text-[var(--color-muted)] mt-4">
+            Don't have an account?
+            <a href="{{ route('register') }}" class="text-[var(--color-accent)] hover:underline">Sign up</a>
+        </p>
     </form>
-
-    @if (Route::has('register'))
-        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
-            <span>{{ __('Don\'t have an account?') }}</span>
-            <flux:link :href="route('register')" wire:navigate>{{ __('Sign up') }}</flux:link>
-        </div>
-    @endif
 </div>
