@@ -1,44 +1,54 @@
-<div>
-    <div class="text-center mb-8">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrYrMttUn1aIuH4h0PZ-7DDmbm_V9mSi30HQ&s" alt="SolarEye Logo" class="mx-auto w-20 h-20 mb-4">
-        <h2 class="text-2xl font-bold text-[var(--color-accent)]">Welcome to SolarEye</h2>
-        <p class="text-[var(--color-muted)]">AI-powered Solar Fault Monitoring</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-zinc-900 px-4">
+    <div class="w-full max-w-md bg-white dark:bg-zinc-800 rounded-2xl shadow-lg p-8 space-y-6">
+        <div class="text-center">
+            <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">🔆 Solar Drone Inspection</h2>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2">Log in to manage your inspection dashboards</p>
+        </div>
+
+        <!-- Session Status -->
+        <x-auth-session-status class="text-center" :status="session('status')" />
+
+        <form method="POST" wire:submit="login" class="space-y-5">
+            @csrf
+            <!-- Email -->
+            <flux:input
+                wire:model="email"
+                label="Email address"
+                type="email"
+                required
+                placeholder="you@example.com"
+                class="w-full"
+            />
+
+            <!-- Password -->
+            <div class="relative">
+                <flux:input
+                    wire:model="password"
+                    label="Password"
+                    type="password"
+                    required
+                    viewable
+                    placeholder="••••••••"
+                />
+                @if (Route::has('password.request'))
+                    <flux:link class="absolute right-0 top-0 text-sm mt-1 text-blue-600" :href="route('password.request')" wire:navigate>
+                        Forgot password?
+                    </flux:link>
+                @endif
+            </div>
+
+            <flux:checkbox wire:model="remember" label="Remember me" />
+
+            <flux:button variant="primary" type="submit" class="w-full">
+                Log In
+            </flux:button>
+        </form>
+
+        @if (Route::has('register'))
+            <p class="text-center text-sm text-zinc-600 dark:text-zinc-400">
+                Don’t have an account?
+                <flux:link :href="route('register')" wire:navigate>Sign up</flux:link>
+            </p>
+        @endif
     </div>
-
-    <form wire:submit="login" class="space-y-4">
-        <div>
-            <label for="email" class="block text-sm font-medium text-[var(--color-muted)]">Email address</label>
-            <input wire:model="form.email" id="email" type="email"
-                class="w-full mt-1 rounded-lg bg-[var(--color-bg)] border border-gray-600 text-[var(--color-text)] p-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
-            @error('form.email') <p class="text-red-400 text-sm">{{ $message }}</p> @enderror
-        </div>
-
-        <div>
-            <label for="password" class="block text-sm font-medium text-[var(--color-muted)]">Password</label>
-            <input wire:model="form.password" id="password" type="password"
-                class="w-full mt-1 rounded-lg bg-[var(--color-bg)] border border-gray-600 text-[var(--color-text)] p-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
-            @error('form.password') <p class="text-red-400 text-sm">{{ $message }}</p> @enderror
-        </div>
-
-        <div class="flex items-center justify-between">
-            <label class="flex items-center text-sm text-[var(--color-muted)]">
-                <input wire:model="form.remember" type="checkbox" class="mr-2 rounded bg-[var(--color-bg)] border-gray-600" />
-                Remember me
-            </label>
-
-            <a href="{{ route('password.request') }}" class="text-sm text-[var(--color-accent)] hover:underline">
-                Forgot password?
-            </a>
-        </div>
-
-        <button type="submit"
-            class="w-full py-2 rounded-lg bg-[var(--color-button)] hover:bg-[var(--color-button-hover)] text-white font-semibold">
-            Log in
-        </button>
-
-        <p class="text-center text-sm text-[var(--color-muted)] mt-4">
-            Don't have an account?
-            <a href="{{ route('register') }}" class="text-[var(--color-accent)] hover:underline">Sign up</a>
-        </p>
-    </form>
 </div>
