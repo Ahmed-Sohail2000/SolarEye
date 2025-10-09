@@ -49,10 +49,6 @@ Route::put('/sites/{id}', [SiteController::class, "update"])->name('sites.update
 # put route to delte the site data in the database
 Route::delete('/sites/{id}', [SiteController::class, 'destroy'])->name('sites.destroy'); # delete the site data
 
-});
-
-require __DIR__.'/auth.php';
-
 ## INSPECTION CRUD ROUTES
 
 # create a route request for the INSPECTION page
@@ -60,6 +56,14 @@ Route::get('/inspections', [InspectionController::class, 'index']); # main page 
 
 # create a show route request for the INSPECTION detail page
 Route::get('/inspections/{id}', [InspectionController::class, 'show']); # detail page for each inspection with the id parameter of inspection
+
+# ALL RESOURCE CRUD FOR inspection
+Route::resource('inspections', InspectionController::class);
+
+});
+
+require __DIR__.'/auth.php';
+
 
 # Create a report route request for the REPORT page
 Route::get('/reports', [ReportController::class, 'index']); # main index page for all the reports of the solar inspected sites

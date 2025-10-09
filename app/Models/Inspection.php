@@ -10,6 +10,14 @@ class Inspection extends Model
     /** @use HasFactory<\Database\Factories\InspectionFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'site_id',
+        'user_id',
+        'inspection_date',
+        'notes',
+        'status',
+    ];
+
     public function site() # relation to the site being inspected
     
     {
