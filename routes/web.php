@@ -12,7 +12,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('/', 'welcome')->middleware(['auth', 'verified'])->name('welcome');
+Route::view('/', 'welcome')->middleware(['auth', 'verified'])->name('welcome'); # set the view of the dashboard to the application
 
 Route::middleware(['auth'])->group(function () {
 Route::redirect('settings', 'settings/profile');
