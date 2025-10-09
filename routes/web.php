@@ -14,6 +14,11 @@ Route::get('/', function () {
 
 Route::view('/', 'welcome')->middleware(['auth', 'verified'])->name('welcome'); # set the view of the dashboard to the application
 
+Route::get('/dashboard', function () 
+{    
+    return view('dashboard'); // Ensure you have a dashboard.blade.php view
+})->name('dashboard');
+
 Route::middleware(['auth'])->group(function () {
 Route::redirect('settings', 'settings/profile');
 
