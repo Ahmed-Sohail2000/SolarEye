@@ -41,7 +41,7 @@ class SiteController extends Controller
         // 1. validate the input form
         $validated = $request->validate([
 
-            'name' => 'required|string|max:255',
+            'name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
             'capacity' => 'required|numeric|min:0',
             'latitude' => 'required|string|max:255',
             'longitude' => 'required|string|max:255'
@@ -73,7 +73,7 @@ class SiteController extends Controller
 
         $validated = $request->validate([ # update the site data with the request data
 
-            'name' => 'required|string|max:255',
+            'name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
             'capacity' => 'required|numeric|min:0',
             'latitude' => 'required|string|max:255',
             'longitude' => 'required|string|max:255'
