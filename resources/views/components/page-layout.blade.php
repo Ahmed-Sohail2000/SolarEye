@@ -17,24 +17,25 @@
                 <img src= 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrYrMttUn1aIuH4h0PZ-7DDmbm_V9mSi30HQ&s' alt="SolarEye Logo" class="w-10 h-10 rounded-full">
                 <span class="text-xl font-semibold tracking-wide"> <a href="/" class="hover:text-gray-200">SolarEye </a> </span>
             </div>
-
-            <div class="space-x-4">
             
-                @guest
-                    
-                    <a href="{{ route('login') }}" class="hover:text-gray-200">Login</a>
-                    <a href="{{ route('register') }}" class="hover:text-gray-200">Register</a>
-                
-                @else
-                    
-                    <span>Welcome, {{ Auth::user()->name }}</span>
+                <div class="space-x-4">
+                    @guest
+                        
+                        <a href="{{ route('login') }}" class="hover:text-gray-200">Login</a>
+                        <a href="{{ route('register') }}" class="hover:text-gray-200">Register</a>
+                    @else
+        
+                        <span class="font-semibold">Welcome, {{ Auth::user()->name }}</span>
                     <form action="{{ route('logout') }}" method="POST" class="inline">
-                @csrf
+            
+                    @csrf
                     
-                    <button type="submit" class="hover:text-gray-200">Logout</button>
+                        <button type="submit" class="hover:text-gray-200 ml-2">Logout</button>
                     </form>
-                @endguest
-</div>
+                    
+                    @endguest
+
+                </div>
 
         </nav>
     </header>
