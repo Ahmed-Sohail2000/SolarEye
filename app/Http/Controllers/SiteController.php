@@ -44,11 +44,12 @@ class SiteController extends Controller
             'name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
             'capacity' => 'required|numeric|min:0',
             'latitude' => 'required|string|max:255',
-            'longitude' => 'required|string|max:255'
+            'longitude' => 'required|string|max:255',
+            'user_id' => auth()->id(),
         ]); 
 
         // user auth 
-        $validated['user_id'] = auth()->id(); # set the user_id to the currently authenticated user
+        // $validated['user_id'] = auth()->id(); # set the user_id to the currently authenticated user
 
         // 2. Create the site with validated data
         $site = Site::create($validated);
@@ -76,12 +77,12 @@ class SiteController extends Controller
             'name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
             'capacity' => 'required|numeric|min:0',
             'latitude' => 'required|string|max:255',
-            'longitude' => 'required|string|max:255'
-
+            'longitude' => 'required|string|max:255',
+            'user_id' => auth()->id(),
         ]);
 
         // add the user auth
-        $validated['user_id'] = auth()->id(); // assign the current user
+        // $validated['user_id'] = auth()->id(); // assign the current user
 
         // update the site
         $site->update($validated);
