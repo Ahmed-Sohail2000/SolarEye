@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         ))->create();
 
         User::factory()->create([
-            'name' => 'Admin User',
+            'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => bycrypt('password'), # default password
         ]);

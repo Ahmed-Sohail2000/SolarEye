@@ -32,7 +32,7 @@ class InspectionController extends Controller
     {
         $inspections = Inspection::all(); 
 
-        return view('inspections.create', compact('inspections'));
+        return view('inspections.create', ["inspections" => $inspections]);
     }
 
     public function store(Request $request)

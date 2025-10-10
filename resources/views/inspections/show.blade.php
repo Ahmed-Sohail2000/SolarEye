@@ -33,9 +33,13 @@
             </p>
         @endif
 
-        <div class="mt-4">
-            <a href="/inspections" class="text-blue-600 hover:underline">
+        <div class="mt-4 flex space-x-4">
+            <a href="/inspections" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
                 ← Back to all inspections
+            </a>
+
+            <a href = "/inspections/{{$inspection->id}}/edit" class = "bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition">
+                Edit inspection
             </a>
         </div>
     </div>
