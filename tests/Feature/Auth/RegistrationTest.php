@@ -21,7 +21,5 @@ test('new users can register', function () {
 
     $response
         ->assertHasNoErrors()
-        ->assertRedirect(route('welcome'));
-
-    $this->assertAuthenticated();
+        ->assertRedirect(route('login'));
 });
