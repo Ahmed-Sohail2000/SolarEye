@@ -51,11 +51,11 @@ Route::delete('/sites/{id}', [SiteController::class, 'destroy'])->name('sites.de
 
 ## INSPECTION CRUD ROUTES
 
-# create a route request for the INSPECTION page
-Route::get('/inspections', [InspectionController::class, 'index']); # main page for all inspections
+// # create a route request for the INSPECTION page
+// Route::get('/inspections', [InspectionController::class, 'index']); # main page for all inspections
 
-# create a show route request for the INSPECTION detail page
-Route::get('/inspections/{id}', [InspectionController::class, 'show']); # detail page for each inspection with the id parameter of inspection
+// # create a show route request for the INSPECTION detail page
+// Route::get('/inspections/{id}', [InspectionController::class, 'show']); # detail page for each inspection with the id parameter of inspection
 
 # ALL RESOURCE CRUD FOR inspection
 Route::resource('inspections', InspectionController::class);

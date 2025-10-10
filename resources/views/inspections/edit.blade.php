@@ -4,10 +4,12 @@
 <div class="max-w-3xl mx-auto py-10">
     <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Edit Inspection</h1>
 
-    <form action="/inspections/{{$inspection->id }}" method="POST" class="space-y-4 bg-white dark:bg-zinc-800 rounded-2xl shadow p-6">
+    <form action="{{ route('inspections.update', $inspection->id) }}" class="space-y-4 bg-white dark:bg-zinc-800 rounded-2xl shadow p-6" method="POST">
         @csrf
         @method('PUT')
 
+        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+        
         <!-- Select Site -->
         <label class="block">
             <span class="text-gray-700 dark:text-gray-300">Site</span>

@@ -37,12 +37,15 @@ class InspectionController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'site_id' => 'required|exists:sites,id',
             'inspection_date' => 'required|date',
             'status' => 'required|string',
             'notes' => 'nullable|string',
         ]);
+
+        # save the user auth detail
+        $validated['user_id'] = auth()->id();
 
         Inspection::create($request->all());
 
@@ -56,7 +59,7 @@ class InspectionController extends Controller
     }
 
     // Update an inspection
-    public function update(Request $request, Inspection $inspection)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'site_id' => 'required|exists:sites,id',
