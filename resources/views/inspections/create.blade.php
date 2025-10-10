@@ -11,8 +11,8 @@
         <label class="block">
             <span class="text-gray-700 dark:text-gray-300">Site</span>
             <select name="site_id" class="w-full p-2 rounded border border-gray-300 dark:border-gray-700">
-                @foreach($inspections as $inspection)
-                    <option value="{{ $inspection->site->id }}">{{ $inspection->site->name }}</option>
+                @foreach($sites as $site)
+                    <option value="{{ $site->id }}">{{ $site->name }}</option>
                 @endforeach
             </select>
         </label>
@@ -24,7 +24,7 @@
 
         <label class="block">
             <span class="text-gray-700 dark:text-gray-300">Status</span>
-            <input type="text" name="status" placeholder="Pending / Completed" class="w-full p-2 rounded border border-gray-300 dark:border-gray-700">
+            <input type="text" name="status" placeholder="Pending / Completed / In Progress" class="w-full p-2 rounded border border-gray-300 dark:border-gray-700">
         </label>
 
         <label class="block">

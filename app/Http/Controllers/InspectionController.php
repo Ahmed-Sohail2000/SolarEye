@@ -30,9 +30,9 @@ class InspectionController extends Controller
     public function create()
     
     {
-        $inspections = Inspection::all(); 
+        $sites = Site::all(); 
 
-        return view('inspections.create', ["inspections" => $inspections]);
+        return view('inspections.create', compact('sites'));
     }
 
     public function store(Request $request)
