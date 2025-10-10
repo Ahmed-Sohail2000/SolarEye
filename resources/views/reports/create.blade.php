@@ -12,9 +12,11 @@
             <span class="text-gray-700 dark:text-gray-300">Inspection</span>
             <select name="inspection_id" class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
                 @foreach($inspections as $inspection)
+
                     <option value="{{ $inspection->id }}">
-                        {{ $inspection->site->name }} - {{ $inspection->inspection_date }}
+                        {{ $inspection->site?->name ?? 'No site' }} - {{ $inspection->inspection_date }}
                     </option>
+
                 @endforeach
             </select>
         </label>
