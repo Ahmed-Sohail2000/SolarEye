@@ -16,14 +16,10 @@
             <a href="{{ route('reports.create') }}" class="underline text-yellow-800">Create a new report</a>
         </div>
     @else
-        <div class="space-y-4">
+        <div class="space-y-2">
             @foreach($reports as $report)
-                <div class="bg-white dark:bg-zinc-800 rounded-2xl shadow p-6 flex justify-between items-center">
-                    <div>
-                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">{{ $report->title }}</h2>
-                        <p class="text-gray-600 dark:text-gray-300">Inspection: {{ $report->inspection->site->name ?? 'N/A' }} ({{ $report->inspection->inspection_date ?? 'N/A' }})</p>
-                        <p class="text-gray-600 dark:text-gray-300">Severity: {{ ucfirst($report->severity) }}</p>
-                    </div>
+                <div class="bg-white dark:bg-zinc-800 rounded-2xl shadow p-4 flex justify-between items-center">
+                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $report->title }}</h2>
                     <div class="flex space-x-3">
                         <a href="{{ route('reports.show', $report->id) }}" class="text-blue-600 hover:underline">View</a>
                         <a href="{{ route('reports.edit', $report->id) }}" class="text-yellow-500 hover:underline">Edit</a>

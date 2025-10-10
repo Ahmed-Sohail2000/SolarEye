@@ -8,35 +8,28 @@ use App\Models\Inspection;
 
 class ReportController extends Controller
 {
-    // List all reports
+    // Display a list of all reports
     public function index()
     {
-        $reports = Report::with('inspection.site')->get();
+        $reports = Report::with('inspection')->get(); // eager load inspection
         return view('reports.index', compact('reports'));
     }
 
-    // Show single report
-    public function show($id)
-    {
-        $report = Report::with('inspection.site')->findOrFail($id);
-        return view('reports.show', compact('report'));
-    }
-
-    // Show create form
+    // Show the form for creating a new report
     public function create()
     {
-        $inspections = Inspection::with('site')->get();
+        $inspections = Inspection::all(); // show all inspections for selection
         return view('reports.create', compact('inspections'));
     }
 
-    // Store a new report
+    // Store a newly created report
     public function store(Request $request)
     {
         $validated = $request->validate([
             'inspection_id' => 'required|exists:inspections,id',
             'title' => 'required|string|max:255',
             'summary' => 'required|string',
-            'severity' => 'required|in:low,medium,higH',
+            'severity' => 'required|in:low,medium,high',
             'fault_type' => 'nullable|string|max:255',
             'photo_url' => 'nullable|url',
         ]);
@@ -46,15 +39,22 @@ class ReportController extends Controller
         return redirect()->route('reports.index')->with('success', 'Report created successfully.');
     }
 
-    // Show edit form
+    // Display a single report
+    public function show($id)
+    {
+        $report = Report::with('inspection')->findOrFail($id);
+        return view('reports.show', compact('report'));
+    }
+
+    // Show the form for editing an existing report
     public function edit($id)
     {
         $report = Report::findOrFail($id);
-        $inspections = Inspection::with('site')->get();
+        $inspections = Inspection::all(); // show all inspections in dropdown
         return view('reports.edit', compact('report', 'inspections'));
     }
 
-    // Update a report
+    // Update an existing report
     public function update(Request $request, $id)
     {
         $report = Report::findOrFail($id);
@@ -78,6 +78,7 @@ class ReportController extends Controller
     {
         $report = Report::findOrFail($id);
         $report->delete();
+
         return redirect()->route('reports.index')->with('success', 'Report deleted successfully.');
     }
 }
