@@ -1,26 +1,83 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Report;
 
 use Illuminate\Http\Request;
+use App\Models\Report;
+use App\Models\Inspection;
 
 class ReportController extends Controller
 {
-    # create a report controller for the report page
+    // List all reports
     public function index()
-    
     {
-        $reports = Report::all(); # get all reports
-
-        return view('reports.index', compact('reports')); # return the report index view
+        $reports = Report::with('inspection.site')->get();
+        return view('reports.index', compact('reports'));
     }
 
+    // Show single report
     public function show($id)
-    
     {
-        $report = Report::findOrFail($id); # find the report by id or fail if not found
+        $report = Report::with('inspection.site')->findOrFail($id);
+        return view('reports.show', compact('report'));
+    }
 
-        return view('reports.show', compact('report')); # return the report show view with the report data
+    // Show create form
+    public function create()
+    {
+        $inspections = Inspection::with('site')->get();
+        return view('reports.create', compact('inspections'));
+    }
+
+    // Store a new report
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'inspection_id' => 'required|exists:inspections,id',
+            'title' => 'required|string|max:255',
+            'summary' => 'required|string',
+            'severity' => 'required|in:low,medium,higH',
+            'fault_type' => 'nullable|string|max:255',
+            'photo_url' => 'nullable|url',
+        ]);
+
+        Report::create($validated);
+
+        return redirect()->route('reports.index')->with('success', 'Report created successfully.');
+    }
+
+    // Show edit form
+    public function edit($id)
+    {
+        $report = Report::findOrFail($id);
+        $inspections = Inspection::with('site')->get();
+        return view('reports.edit', compact('report', 'inspections'));
+    }
+
+    // Update a report
+    public function update(Request $request, $id)
+    {
+        $report = Report::findOrFail($id);
+
+        $validated = $request->validate([
+            'inspection_id' => 'required|exists:inspections,id',
+            'title' => 'required|string|max:255',
+            'summary' => 'required|string',
+            'severity' => 'required|in:low,medium,high',
+            'fault_type' => 'nullable|string|max:255',
+            'photo_url' => 'nullable|url',
+        ]);
+
+        $report->update($validated);
+
+        return redirect()->route('reports.show', $report->id)->with('success', 'Report updated successfully.');
+    }
+
+    // Delete a report
+    public function destroy($id)
+    {
+        $report = Report::findOrFail($id);
+        $report->delete();
+        return redirect()->route('reports.index')->with('success', 'Report deleted successfully.');
     }
 }
