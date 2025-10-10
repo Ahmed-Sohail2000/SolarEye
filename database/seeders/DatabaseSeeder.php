@@ -20,18 +20,18 @@ class DatabaseSeeder extends Seeder
         
         (
             
-        Inspection::factory(3)->has # each site has 3 inspections
+        Inspection::factory(2)->has # each site has 2 inspections
         
         (
         
-        Report::factory(2) # each inspection has 2 reports
+        Report::factory(1) # each inspection has 1 report
             
         ))->create();
 
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
-            'password' => bycrypt('password'), # default password
+            'password' => 'password', # default password
         ]);
     
     }
