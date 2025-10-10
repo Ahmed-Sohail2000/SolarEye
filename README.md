@@ -59,7 +59,7 @@ npm install
 
 6. ### Run migrations
 ```bash
-php artisan migrate
+php artisan migrate:fresh --seed
 ```
 
 7. ### Build frontend assets
