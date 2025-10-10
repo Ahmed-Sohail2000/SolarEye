@@ -36,10 +36,13 @@ class Register extends Component
 
         event(new Registered(($user = User::create($validated))));
 
+        // authenticate the logged in user
+        Auth::login($user);
+
         // redirect to the login page after successful registration
         session()->flash('success', 'Registration successful! Please log in to continue.');
 
-        $this->redirect(route('login', absolute: false), navigate: true);
+        $this->redirect(route('welcome'));
 
     }
 }

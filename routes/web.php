@@ -8,17 +8,26 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route; 
 
+// route for users and guests
 Route::get('/', function () {
-    return view('welcome');
-})->name('home');
 
-Route::view('/', 'welcome')->middleware(['auth', 'verified'])->name('welcome'); # set the view of the dashboard to the application
+    if (auth()->check())
+    
+    {
+        return view('welcome');
+    }
 
-Route::get('/dashboard', function () 
-{    
-    return view('dashboard'); // Ensure you have a dashboard.blade.php view
-})->name('dashboard');
+    return redirect(route('login')); 
+})->name('welcome');
 
+// dashboard route
+Route::get('/dashboard', function()
+{
+    return view('dashboard');
+})
+->middleware(['auth', 'verified'])->name('dashboard'); # set the view of the dashboard to the application
+
+// authenticated user routes
 Route::middleware(['auth'])->group(function () {
 Route::redirect('settings', 'settings/profile');
 
