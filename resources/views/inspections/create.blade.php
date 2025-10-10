@@ -4,8 +4,10 @@
 <div class="max-w-3xl mx-auto py-10">
     <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Create New Inspection</h1>
 
-    <form action="{{ route('inspections.store') }}" method="POST" class="space-y-4 bg-white dark:bg-zinc-800 rounded-2xl shadow p-6">
+    <form action="/inspections" method="POST" class="space-y-4 bg-white dark:bg-zinc-800 rounded-2xl shadow p-6">
+        
         @csrf
+        
 
         <label class="block">
             <span class="text-gray-700 dark:text-gray-300">Site</span>

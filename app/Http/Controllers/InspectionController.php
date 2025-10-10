@@ -60,14 +60,15 @@ class InspectionController extends Controller
     {
         $request->validate([
             'site_id' => 'required|exists:sites,id',
+            'user_id'=> 'required|exists:users,id',
             'inspection_date' => 'required|date',
             'status' => 'required|string',
             'notes' => 'nullable|string|in:pending,completed,in_progress',
         ]);
 
-        $inspection->update(all());
+        $inspection->update($request->all());
 
-        return redirect()->route('inspections.index')->with('success', 'Inspection updated successfully.');
+        return redirect()->route('inspections.show')->with('success', 'Inspection updated successfully.');
     }
 
     // Delete an inspection
