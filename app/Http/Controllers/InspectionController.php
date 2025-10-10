@@ -41,37 +41,44 @@ class InspectionController extends Controller
             'site_id' => 'required|exists:sites,id',
             'inspection_date' => 'required|date',
             'status' => 'required|string',
-            'notes' => 'nullable|string',
+            'notes' => 'required|string',
         ]);
 
         # save the user auth detail
         $validated['user_id'] = auth()->id();
 
-        Inspection::create($request->all());
+        Inspection::create($validated);
 
         return redirect()->route('inspections.index')->with('success', 'Inspection created successfully.');
     }
 
-     public function edit(Inspection $inspection)
+     public function edit($id)
     {
+
+        // find an inspection to edit
+        $inspection = Inspection::find($id);
+
+        // get all sites from the dropdown
         $sites = Site::all();
+
+        // pass both to the edit view
         return view('inspections.edit', compact('inspection', 'sites'));
     }
 
     // Update an inspection
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validated = $request->validate([
             'site_id' => 'required|exists:sites,id',
             'user_id'=> 'required|exists:users,id',
             'inspection_date' => 'required|date',
             'status' => 'required|string',
-            'notes' => 'nullable|string|in:pending,completed,in_progress',
+            'notes' => 'required|string|in:pending,completed,in_progress',
         ]);
 
-        $inspection->update($request->all());
+        $inspection->update($validated);
 
-        return redirect()->route('inspections.show')->with('success', 'Inspection updated successfully.');
+        return redirect()->route('inspections.index')->with('success', 'Inspection updated successfully.');
     }
 
     // Delete an inspection
